@@ -17,11 +17,14 @@ public class Application {
     static void run(Scanner sc) {
 
         Manager manager = new Manager();
-        Player p1 = new Player();
+        System.out.println(manager.getManagerNumber());
+        Player p1 = Player.readyWithManger(manager);
 
-        while (manager.endGameNow) {
-            p1.playWithManager(manager, sc);
+        while (manager.gameStatus) {
+            p1.play(sc);
         }
+
+
     }
 
     public static void main(String[] args) {

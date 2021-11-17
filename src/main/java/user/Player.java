@@ -1,50 +1,50 @@
 package user;
 
 import exception.NumberException;
+import pio.GameInput;
 import utils.DEFINE;
 import utils.GameInterface;
 
 import java.util.Scanner;
 
 
-public class Player {
+public class Player extends GameInterface {
 
     Manager gm; // 매니저 객체
-    public StringBuffer inputBuffer; // 사용자 입력버퍼 (buffer)
+    StringBuffer playerBuffer; // 사용자 입력버퍼 (buffer)
+    Scanner userKeyBoardInput;
 
-    public Player() {
-        inputBuffer = new StringBuffer(DEFINE.INPUT_NUMBER_DIGIT);
+    public Player(Manager manager) {
+        this.gm = manager;
+        playerBuffer = new StringBuffer(DEFINE.INPUT_NUMBER_DIGIT);
     }
 
-    public void playWithManager(Manager manager, Scanner sc) {
-        this.gm = manager;
+    public static Player readyWithManger(Manager manager) {
+        /* 정적 팩토리 메소드를 이용해 메소드 생성 시 가독성 up */
+        return new Player(manager);
+    }
 
-        if (inputNumber(sc) == 1) {
-            /* player가 입력한 숫자가 유효할 때  */
-            submitToManager();
-        } else {
+    public void play(Scanner sc) {
+        userKeyBoardInput = sc;
+        userInputMessage();
+        String number = GameInput.Number(userKeyBoardInput);
+        if (number == null) {
             throw new NumberException("3보다 크거나 작을 수 없음");
         }
+
+        /* player가 입력한 숫자가 유효 */
+        playerBuffer.append(number);
+        sc.reset();
+        submit();
     }
 
 
-    public int inputNumber(Scanner sc) {
-        GameInterface.userInput();
-        String inputNumber = sc.nextLine();
+    public void submit() {
+        playerBuffer.setLength(0);
+        gm.setPlayerNumber(playerBuffer);
+        gm.gameToStatus(userKeyBoardInput);
 
-        /* 3보다 크거나 작을 수 없음*/
-        if ((inputNumber.length() > DEFINE.INPUT_NUMBER_DIGIT) ||
-                (inputNumber.length() < DEFINE.INPUT_NUMBER_DIGIT)) {
-            return 0;
-        }
-
-        inputBuffer.append(inputNumber);
-        sc.reset(); // 입력 버퍼 비워주기
-        return 1;
     }
 
-    public void submitToManager() {
-        gm.setPlayerNumber(inputBuffer);
-    }
 
 }

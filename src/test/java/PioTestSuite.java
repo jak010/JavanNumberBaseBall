@@ -1,46 +1,36 @@
 import org.junit.jupiter.api.Test;
-import user.Player;
+import pio.GameInput;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class ManagerTestFixture {
-    /*
-     *   안 되는 것을 위주로 테스트 해보자
-     * */
-
+public class PioTestSuite {
     public static InputStream generateUserInput(String input) {
+        /* Scanner 입력을 위해 테스트로 만든 함수 */
         return new ByteArrayInputStream(input.getBytes());
     }
 
-
     @Test
-    public void when_the_player_input_2_number() {
+    public void when_the_game_input_2_number() {
         // given
         InputStream in = generateUserInput("12");
         System.setIn(in);
-        final Scanner scanner = new Scanner(System.in);
-
         // when
-        Player p = new Player();
-
+        final Scanner scanner = new Scanner(System.in);
         // Then
-        assert p.inputNumber(scanner) == 0;
+        assert GameInput.Number(scanner) == null;
+
     }
 
     @Test
-    public void when_the_player_input_4_number() {
+    public void when_the_game_input_4_number() {
         // given
         InputStream in = generateUserInput("1234");
         System.setIn(in);
-        final Scanner scanner = new Scanner(System.in);
-
         // when
-        Player p = new Player();
-
+        final Scanner scanner = new Scanner(System.in);
         // Then
-        assert p.inputNumber(scanner) == 0;
+        assert GameInput.Number(scanner) == null;
     }
-
 }
