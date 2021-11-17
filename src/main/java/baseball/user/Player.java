@@ -38,7 +38,7 @@ public class Player {
             gm.notify(sc); // 2. 결과를 받고
             playerBuffer.setLength(0); // 3. buffer를 비워줌
         } else if (!gm.verify()) {
-            System.out.println("입력 자리수는 3자리임.");
+            throw new IllegalArgumentException("유효한 숫자가 아님");
         }
 
     }
