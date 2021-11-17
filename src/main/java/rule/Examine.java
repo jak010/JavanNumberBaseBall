@@ -42,13 +42,15 @@ public class Examine {
     public void score() {
         GameResult result = GameResult.withManager(strike_count, ball_count);
 
-        if (strike_count == 0) {
+        if ((strike_count == 0) && (ball_count == 0)) {
             result.noThing();
+        }
+
+        if (strike_count == 0) {
             result.checkOnlyBall();
         }
 
         if (ball_count == 0) {
-            result.noThing();
             result.checkOnlyStrike();
         }
 

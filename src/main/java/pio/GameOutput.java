@@ -3,7 +3,6 @@ package pio;
 import utils.DEFINE;
 import utils.RandomUtils;
 
-import user.Manager;
 
 public class GameOutput {
 

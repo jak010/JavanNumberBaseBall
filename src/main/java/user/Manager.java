@@ -1,7 +1,11 @@
 package user;
 
+
+import baseball.Application;
+import exception.NumberException;
 import pio.GameOutput;
 import rule.Examine;
+import sun.jvm.hotspot.utilities.AltPlatformInfo;
 import utils.DEFINE;
 import utils.GameInterface;
 import utils.GameResult;
@@ -33,7 +37,6 @@ public class Manager extends GameInterface {
     }
 
 
-
     public void verify() {
         /* 유저가 입력한 숫자를 검증 */
         em = new Examine(managerNumber, playerNumber);
@@ -47,11 +50,21 @@ public class Manager extends GameInterface {
         /* Player에게 게임을 끝낼건지 물어볼자
          *  - When?,  3 strike 일 때
          * */
+
         if (em.strike_count == DEFINE.MAX_STRIKE) {
             gameEndMessageByManger();
-            gameRebootMessageByManger();
-            if (sc.nextInt() == DEFINE.GAME_END) gameStatus = false;
+
+            /* 게임 종료 */
+            if (sc.nextInt() == DEFINE.GAME_END) {
+                gameStatus = false;
+            }
+            managerNumber = GameOutput.generateNumber();
+
         } else {
+
+            if (playerNumber.length() < DEFINE.INPUT_NUMBER_DIGIT) {
+                throw new NumberException("3보다 크거나 작을 수 없음");
+            }
             em.score();
         }
         return true;

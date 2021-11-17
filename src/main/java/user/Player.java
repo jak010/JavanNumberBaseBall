@@ -12,7 +12,6 @@ public class Player extends GameInterface {
 
     Manager gm; // 매니저 객체
     StringBuffer playerBuffer; // 사용자 입력버퍼 (buffer)
-    Scanner userKeyBoardInput;
 
     public Player(Manager manager) {
         this.gm = manager;
@@ -25,25 +24,20 @@ public class Player extends GameInterface {
     }
 
     public void play(Scanner sc) {
-        userKeyBoardInput = sc;
-        userInputMessage();
-        String number = GameInput.Number(userKeyBoardInput);
-        if (number == null) {
-            throw new NumberException("3보다 크거나 작을 수 없음");
-        }
 
-        /* player가 입력한 숫자가 유효 */
+        userInputMessage();
+        String number = GameInput.Number(sc);
+
         playerBuffer.append(number);
-        sc.reset();
-        submit();
+        submit(sc);
+        playerBuffer.setLength(0);
+
     }
 
 
-    public void submit() {
-        playerBuffer.setLength(0);
+    public void submit(Scanner sc) {
         gm.setPlayerNumber(playerBuffer);
-        gm.gameToStatus(userKeyBoardInput);
-
+        gm.gameToStatus(sc);
     }
 
 
