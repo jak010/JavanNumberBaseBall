@@ -1,6 +1,6 @@
-package utils;
+package baseball.screen;
 
-public class GameInterface {
+public class GameMenu {
 
     public static void userInputMessage() {
         System.out.print("숫자를 입력하세요: ");

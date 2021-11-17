@@ -1,11 +1,11 @@
-package rule;
-
-import utils.DEFINE;
-import utils.GameResult;
+package baseball.rule;
 
 
 public class Examine {
-
+    /*
+     *  Manager 객체에게 managerNumber와 playerNumber 를 받아서 결과를 알려줌
+     *  - examine: 조사하다
+     * */
     StringBuffer mangerNumber;
     StringBuffer playerNumber;
 
@@ -17,7 +17,7 @@ public class Examine {
         this.playerNumber = playerNumber;
     }
 
-    public void checkBall() {
+    public void checkBallCount() {
         /* 입력된 숫자에서 Ball의 갯수를 체크 */
         for (int i = 0; i < DEFINE.INPUT_NUMBER_DIGIT; i++) {
             String playNumberCh = Character.toString(playerNumber.charAt(i));
@@ -28,7 +28,7 @@ public class Examine {
         }
     }
 
-    public void checkStrike() {
+    public void checkStrikeCount() {
         /* 입력된 숫자에서 Strike 의 갯수를 체크 */
         for (int i = 0; i < DEFINE.INPUT_NUMBER_DIGIT; i++) {
             String playNumberCh = Character.toString(playerNumber.charAt(i));
@@ -40,21 +40,12 @@ public class Examine {
     }
 
     public void score() {
-        GameResult result = GameResult.withManager(strike_count, ball_count);
-
-        if ((strike_count == 0) && (ball_count == 0)) {
-            result.noThing();
-        }
-
-        if (strike_count == 0) {
-            result.checkOnlyBall();
-        }
-
-        if (ball_count == 0) {
-            result.checkOnlyStrike();
-        }
-
-        result.checkBallWithStrike();
+        /* build 패턴 적용해봄*/
+        GameResult result = GameResult.withCount(strike_count, ball_count);
+        result.checkNothing()
+                .checkOnlyBall()
+                .checkOnlyStrike()
+                .checkBallWithStrike();
 
     }
 }

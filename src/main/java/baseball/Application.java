@@ -1,8 +1,8 @@
 package baseball;
 
 
-import user.Manager;
-import user.Player;
+import baseball.user.Manager;
+import baseball.user.Player;
 
 import java.util.Scanner;
 

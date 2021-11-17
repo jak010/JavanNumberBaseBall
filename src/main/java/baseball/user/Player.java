@@ -1,14 +1,14 @@
-package user;
-
-import exception.NumberException;
-import pio.GameInput;
-import utils.DEFINE;
-import utils.GameInterface;
+package baseball.user;
 
 import java.util.Scanner;
 
+import baseball.rule.DEFINE;
+import utils.pio.GameInput;
 
-public class Player extends GameInterface {
+import static baseball.screen.GameMenu.userInputMessage;
+
+
+public class Player {
 
     Manager gm; // 매니저 객체
     StringBuffer playerBuffer; // 사용자 입력버퍼 (buffer)
@@ -24,7 +24,6 @@ public class Player extends GameInterface {
     }
 
     public void play(Scanner sc) {
-
         userInputMessage();
         String number = GameInput.Number(sc);
 
@@ -37,7 +36,8 @@ public class Player extends GameInterface {
 
     public void submit(Scanner sc) {
         gm.setPlayerNumber(playerBuffer);
-        gm.gameToStatus(sc);
+        gm.verify();
+        gm.notify(sc);
     }
 
 

@@ -1,4 +1,4 @@
-package exception;
+package baseball.exception;
 
 public class NumberException extends RuntimeException {
 

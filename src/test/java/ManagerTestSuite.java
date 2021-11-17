@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import user.Manager;
+import baseball.user.Manager;
 
 
 public class ManagerTestSuite {

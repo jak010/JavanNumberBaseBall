@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import pio.GameInput;
+import utils.pio.GameInput;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

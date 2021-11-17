@@ -1,7 +1,5 @@
-package rule;
+package baseball.rule;
 
-
-import utils.DEFINE;
 
 @Deprecated
 public class Processor {
