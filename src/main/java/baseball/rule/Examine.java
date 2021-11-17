@@ -2,6 +2,7 @@ package baseball.rule;
 
 
 public class Examine {
+
     /*
      *  Manager 객체에게 managerNumber와 playerNumber 를 받아서 결과를 알려줌
      *  - examine: 조사하다
@@ -22,7 +23,7 @@ public class Examine {
         for (int i = 0; i < DEFINE.INPUT_NUMBER_DIGIT; i++) {
             String playNumberCh = Character.toString(playerNumber.charAt(i));
             if ((mangerNumber.indexOf(playNumberCh) != DEFINE.NOT_EXIST_NUMBER) &&
-                    (mangerNumber.indexOf(playNumberCh) != playerNumber.indexOf(playNumberCh))) {
+                (mangerNumber.indexOf(playNumberCh) != playerNumber.indexOf(playNumberCh))) {
                 ball_count += 1;
             }
         }
@@ -33,7 +34,7 @@ public class Examine {
         for (int i = 0; i < DEFINE.INPUT_NUMBER_DIGIT; i++) {
             String playNumberCh = Character.toString(playerNumber.charAt(i));
             if ((mangerNumber.indexOf(playNumberCh) != DEFINE.NOT_EXIST_NUMBER) &&
-                    (mangerNumber.indexOf(playNumberCh) == playerNumber.indexOf(playNumberCh))) {
+                (mangerNumber.indexOf(playNumberCh) == playerNumber.indexOf(playNumberCh))) {
                 strike_count += 1;
             }
         }
@@ -43,9 +44,10 @@ public class Examine {
         /* build 패턴 적용해봄*/
         GameResult result = GameResult.withCount(strike_count, ball_count);
         result.checkNothing()
-                .checkOnlyBall()
-                .checkOnlyStrike()
-                .checkBallWithStrike();
+            .checkOnlyBall()
+            .checkOnlyStrike()
+            .checkBallWithStrike()
+            .release();
 
     }
 }

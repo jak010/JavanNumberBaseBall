@@ -3,12 +3,11 @@ package baseball.user;
 import java.util.Scanner;
 
 import baseball.rule.DEFINE;
+import baseball.screen.Display;
 import utils.pio.GameOutput;
 
 import baseball.rule.Examine;
 import baseball.exception.NumberException;
-
-import static baseball.screen.GameMenu.gameEndMessageByManger;
 
 
 public class Manager {
@@ -50,7 +49,7 @@ public class Manager {
         /* playerNumber의 결과를 표출 */
 
         if (em.strike_count == DEFINE.MAX_STRIKE) {
-            gameEndMessageByManger();
+            Display.Manager.endMessage();
 
             /* 게임 종료 */
             if (sc.nextInt() == DEFINE.GAME_END) {

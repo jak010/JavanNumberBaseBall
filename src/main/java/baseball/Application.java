@@ -16,10 +16,9 @@ public class Application {
 
         while (manager.gameStatus) {
             System.out.println(manager.getManagerNumber());
-            p1.play(sc);
+            p1.guess(sc);
+            p1.submit(sc);
         }
-
-
     }
 
     public static void main(String[] args) {

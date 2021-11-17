@@ -10,5 +10,15 @@ public interface DEFINE {
 
     int GAME_END = 2; /* 게임 종료 값 정의 */
 
+    /* GAME CODE */
+
+    int NOTHING = 990; // Nothing;
+
+    int ONLY_BALL = 991; // ONLY BALL;
+
+    int ONLY_STRIKE = 992; // ONLY STRIKE;
+
+    int BALL_OR_STRIKE = 993; // BALL or STRIKE
+
 
 }
