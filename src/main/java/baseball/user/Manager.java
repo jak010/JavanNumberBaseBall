@@ -13,12 +13,12 @@ import baseball.exception.NumberException;
 public class Manager {
 
 
-    public boolean gameStatus = true; // 게임의 진행 상태 관리
-
     public Examine em = null;
 
     public StringBuffer playerNumber;
     public StringBuffer managerNumber;
+
+    public boolean gameStatus = true; // 게임의 진행 상태 관리
 
     public Manager() {
         managerNumber = GameOutput.generateNumber();
@@ -32,17 +32,19 @@ public class Manager {
         this.playerNumber = playerNumber;
     }
 
-    public void verify() {
+    public boolean verify() {
         /* 유저가 입력한 숫자를 검증
          *   - verify 보다 좋은 네이밍을 써야할 듯
          *  */
-        if (playerNumber.length() < DEFINE.INPUT_NUMBER_DIGIT) {
-            throw new NumberException("3보다 크거나 작을 수 없음");
+        if ((playerNumber.length() < DEFINE.INPUT_NUMBER_DIGIT) ||
+            (playerNumber.length() > DEFINE.INPUT_NUMBER_DIGIT)) {
+            return false;
         }
 
         em = new Examine(managerNumber, playerNumber);
         em.checkBallCount();
         em.checkStrikeCount();
+        return true;
     }
 
     public void notify(Scanner sc) {

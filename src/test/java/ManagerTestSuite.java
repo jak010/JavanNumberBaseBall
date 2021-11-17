@@ -14,6 +14,7 @@ public class ManagerTestSuite {
 
         // given
         Manager manager;
+
         // when
         manager = new Manager();
 

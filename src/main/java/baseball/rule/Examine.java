@@ -41,7 +41,7 @@ public class Examine {
     }
 
     public void score() {
-        /* build 패턴 적용해봄*/
+        /* build 느낌으로 */
         GameResult result = GameResult.withCount(strike_count, ball_count);
         result.checkNothing()
             .checkOnlyBall()
